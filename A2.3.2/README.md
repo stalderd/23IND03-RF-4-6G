@@ -12,4 +12,4 @@ The purpose of the above script using simulated test data is to test if the quad
 
 The MATLAB script called [AnalyzeData_UncompRecCalMet.m](VNA_Linearity_Simulation_Uncompressed_Receiver_Calibration_Method/AnalyzeData_UncompRecCalMet.m) analyze the simulated data sets `LinTestDataSet*.mat` and generates the following report, see [Simulation_StepAtt_UncompresseReceiverCalMethod.pdf](VNA_Linearity_Simulation_Uncompressed_Receiver_Calibration_Method/Simulation_StepAtt_UncompresseReceiverCalMethod.pdf).
 
-The purpose of the above script using simulated test data is to test if the quadratic method algorithm is working correctly.
+The purpose of the above script using simulated test data is to test if the uncompressed receiver calibration algorithm is working correctly.
