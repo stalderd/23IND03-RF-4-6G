@@ -3,27 +3,24 @@
 
 clear all
 close all
-addpath('D:\svn_work\217.01 S-Parameter\Software\Metas.Vna\source\Matlab');
+addpath('C:\Users\Public\Documents\Metas.Vna.Tools\Matlab');
 LoadVNATools();
 
 %% Variables
 vnaDevice = 'Agilent_PNA_N5227A_#1';
-name = 'StepAtt65dB(f-f)_TH61350416_01';
-freq = [10e6 20e6 50e6 100e6 200e6 500e6 1e9 2e9 5e9 10e9 15e9 20e9 25e9 30e9 35e9 40e9 45e9 50e9];
+name = 'StepAtt60dB(f-f)_SN123456_01';
+freq = [50e6 1e9 10e9 18e9 30e9 40e9 50e9]; % VNA frequencies to be measured
 nFreq = length(freq);
 
-power = -30:1:0;
+power = -30:1:0; % VNA source power levels to be measured (e.g. -30 dBm to 0 dBm in 1 dB steps)
 nPower = length(power);
-stepAtt = 0:5:50;
+stepAtt = 0:10:60; % Step attenuator values (only used for naming, e.g. 0 dB to 60 dB it 10 dB steps)
 nStepAtt = length(stepAtt);
-nMeas = 100;
-fitPowerMax = -15;
-plotLimdB = 0.01;
+nMeas = 100; % Number of sweep points per frequency point (CW sweep mode)
+fitPowerMax = -15; % Highest power level in dBm used for the fit of the quadratic model (e.g. -15 dBm)
+plotLimdB = 0.01; % Scale limit for the plots in dB (e.g. 0.01 dB)
 
-covarianceWeigthing = true;
-
-% wave correction factor
-f = 1;
+covarianceWeigthing = true; % Covariance weighting of the residuals (e.g. true)
 
 %% Load all datasqrt(mW)
 a1p1 = zeros(nPower, nStepAtt, nFreq, nMeas); % sqrt(mW)
@@ -40,10 +37,10 @@ for i1 = 1:nPower
         for i3 = 1:nFreq
             d = LoadVNADataAsStruct([pwd '\Measurements_01\' name '\' sprintf('%dHz\\%ddBm\\%s_%ddB.vdatb', freq(i3), power(i1), name, stepAtt(i2))]);
             % 'S1,1', 'S1,2', 'S2,1', 'S2,2', 'a1_p1', 'a2_p2', 'a2/b2_p1', 'a1/b1_p2'
-            a1p1(i1, i2, i3, :) = f.*d.Data(:, 5);
-            b2p1(i1, i2, i3, :) = f.*d.Data(:, 3).*d.Data(:, 5);
-            a2p2(i1, i2, i3, :) = f.*d.Data(:, 6);
-            b1p2(i1, i2, i3, :) = f.*d.Data(:, 2).*d.Data(:, 6);
+            a1p1(i1, i2, i3, :) = d.Data(:, 5);
+            b2p1(i1, i2, i3, :) = d.Data(:, 3).*d.Data(:, 5);
+            a2p2(i1, i2, i3, :) = d.Data(:, 6);
+            b1p2(i1, i2, i3, :) = d.Data(:, 2).*d.Data(:, 6);
             s11(i1, i2, i3, :) = d.Data(:, 1);
             s21(i1, i2, i3, :) = d.Data(:, 3);
             s12(i1, i2, i3, :) = d.Data(:, 2);
