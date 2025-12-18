@@ -1,6 +1,10 @@
 # Peter Huerlimann METAS - 22.03.2019
 # Michael Wollensack METAS - 11.03.2022
 
+# METAS VNA Tools project must already exist with Jounal before this script can be started.
+# IFBW must already be set correctly (e.g. 10 Hz).
+# Point AVG to 1.
+
 import clr
 
 clr.AddReference('System.Windows.Forms')
@@ -25,21 +29,21 @@ from Metas.Instr.Driver.Vna import VnaFormat
 s = Script(RootPath)
 
 # Settings
-vnaDevice = 'Agilent_PNA_N5227A_#1'
-sweepPoints = 100
-dwellTime = 0
-frequencies = [10e6, 20e6, 50e6, 100e6, 200e6, 500e6, 1e9, 2e9, 5e9, 10e9, 15e9, 20e9, 25e9, 30e9, 35e9, 40e9, 45e9, 50e9]
-sourcePowerLevels = range(-30, 1, 1) # Source unleveled above +10 dBm
-vnaSetDelay = 100
+vnaDevice = 'Agilent_PNA_N5227A_#1' # Database file name of the VNA used in VNA Tools without the file extension (.vnadev)
+sweepPoints = 100 # Number of sweep points per frequency point (CW sweep mode)
+dwellTime = 0 # VNA dwell time (e.g. 0 s)
+frequencies = [50e6, 1e9, 10e9, 18e9, 30e9, 40e9, 50e9] # VNA frequencies to be measured
+sourcePowerLevels = range(-30, 1, 1) # VNA source power levels to be measured (e.g. -30 dBm to 0 dBm in 1 dB steps)
+vnaSetDelay = 100 # Delay after VNA source power level changes (e.g. 100 ms)
 
-iSwitch = s.OpenSwitch(r'Agilent11713A', r'visa://l-217-01-11.ad.metas/GPIB0::8::INSTR')
-stepAttAttenuation = range(0, 70, 5)
-stepAttStates = ('0000','1000','0100','1100','0010','1010','0001','1001','0101','1101','0011','1011','0111','1111')
-stepAttDelay = 600000
+iSwitch = s.OpenSwitch(r'Agilent11713A', r'GPIB0::8::INSTR') # Step attenuator VNA Tools switch driver and visa resource name
+stepAttAttenuation = range(0, 70, 10) # Step attenuator values (only used for naming, e.g. 0 dB to 60 dB it 10 dB steps)
+stepAttStates = ('000','100','010','110','001','101','011','111') # Step attenuator states to be measured (e.g. 84905M)
+stepAttDelay = 1000 # Delay after step attenuator switching (e.g. 1000 ms)
 
-directory = 'Measurements_01'
-name = 'StepAtt65dB(f-f)_TH61350416_01'
-journalPath = 'Journal_01.vnalog'
+directory = 'Measurements_01' # Measurement directory name
+name = 'StepAtt60dB(f-f)_TH61350416_01' # Measurement file base name (+ stepAttAttenuation[i].ToString() + 'dB.vdatb')
+journalPath = 'Journal_01.vnalog' # Measurement journal file name (measurement journal must already exist)
 
 
 journal = s.LoadJournal(journalPath)
@@ -72,7 +76,7 @@ for frequency in frequencies:
         
         iSwitch.SetState(stepAttStates[i])
         
-        Thread.Sleep(stepAttDelay)
+        Thread.Sleep()
         
         for sourcePower in sourcePowerLevels:
             print 'Source Power: ' + sourcePower.ToString() + ' dBm'
