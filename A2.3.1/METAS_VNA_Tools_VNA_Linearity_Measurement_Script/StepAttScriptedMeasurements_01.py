@@ -38,11 +38,11 @@ vnaSetDelay = 100 # Delay after VNA source power level changes (e.g. 100 ms)
 
 iSwitch = s.OpenSwitch(r'Agilent11713A', r'GPIB0::8::INSTR') # Step attenuator VNA Tools switch driver and visa resource name
 stepAttAttenuation = range(0, 70, 10) # Step attenuator values (only used for naming, e.g. 0 dB to 60 dB it 10 dB steps)
-stepAttStates = ('000','100','010','110','001','101','011','111') # Step attenuator states to be measured (e.g. 84905M)
+stepAttStates = ('000','100','010','001','101','011','111') # Step attenuator states to be measured (e.g. 84905M)
 stepAttDelay = 1000 # Delay after step attenuator switching (e.g. 1000 ms)
 
 directory = 'Measurements_01' # Measurement directory name
-name = 'StepAtt60dB(f-f)_TH61350416_01' # Measurement file base name (+ stepAttAttenuation[i].ToString() + 'dB.vdatb')
+name = 'StepAtt60dB(f-f)_SN123456_01' # Measurement file base name (+ stepAttAttenuation[i].ToString() + 'dB.vdatb')
 journalPath = 'Journal_01.vnalog' # Measurement journal file name (measurement journal must already exist)
 
 
