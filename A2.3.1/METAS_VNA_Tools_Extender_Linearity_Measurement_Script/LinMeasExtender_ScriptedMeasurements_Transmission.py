@@ -2,10 +2,10 @@
 # Michael Wollensack METAS - 11.03.2022
 # Daniel Stalder METAS - 27.03.2025
 
-# METAS VNA Tools project must already exist with Jounal
-# VNA source power levels and IFBW must already be set correctly
-# point AVG to 1
-# IFBW to 100 Hz
+# METAS VNA Tools project must already exist with Jounal before this script can be started.
+# VNA must already be set correctly for the extender setup.
+# IFBW must already be set correctly (e.g. 100 Hz).
+# Point AVG to 1.
 
 import clr
 
@@ -29,22 +29,22 @@ from Metas.UncLib.LinProp import UncNumber
 from Metas.Instr.Driver.Vna import VnaSweepMode, VnaFormat
 
 # Settings
-vnaDevice = 'Keysight_PNA_N5227B_#2_VDI_WR10_2'
-sweepPoints = 40 # CW Time Sweep Points
-vnaSetDelay_ms = 0
+vnaDevice = 'Keysight_PNA_N5227B_#2_VDI_WR10_2' # Database file name of the VNA used in VNA Tools without the file extension (.vnadev)
+sweepPoints = 40 # Number of sweep points per frequency point (CW sweep mode)
+vnaSetDelay_ms = 0 # Delay after a frequency change in ms
 
-frequencies_Hz = range(int(68e9), int(118e9), int(2e9)) # start (inclusive), stop (exculsive), step
+frequencies_Hz = range(int(68e9), int(118e9), int(2e9)) # Frequencies to be measured: start (inclusive), stop (exculsive), step
 
-sourceAttenuator_dB = [0, 0.5, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30]
-sourceAttenuator_position_port_1 = [0, 0.68, 0.80, 0.96, 1.19, 1.35, 1.50, 1.64, 1.750, 1.850, 1.96, 2.06, 2.145, 2.245, 2.330, 2.405, 2.490, 2.555]
-sourceAttenuator_position_port_2 = [0, 0.71, 0.84, 1.00, 1.23, 1.40, 1.55, 1.69, 1.805, 1.915, 2.02, 2.12, 2.215, 2.310, 2.395, 2.480, 2.565, 2.645]
+sourceAttenuator_dB = [0, 0.5, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30] # Extender source attenuator values to be measured
+sourceAttenuator_position_port_1 = [0, 0.68, 0.80, 0.96, 1.19, 1.35, 1.50, 1.64, 1.750, 1.850, 1.96, 2.06, 2.145, 2.245, 2.330, 2.405, 2.490, 2.555] # Corresponding extender 1 source attenuator micrometer positions
+sourceAttenuator_position_port_2 = [0, 0.71, 0.84, 1.00, 1.23, 1.40, 1.55, 1.69, 1.805, 1.915, 2.02, 2.12, 2.215, 2.310, 2.395, 2.480, 2.565, 2.645] # Corresponding extender 2 source attenuator micrometer positions
 
-DUT = ('Thru_01','6dB_236275','10dB_0006','20dB_236276','20dB_236276_10dB_0006', 'Thru_02')
+DUT = ('Thru_01','6dB_236275','10dB_0006','20dB_236276','20dB_236276_10dB_0006', 'Thru_02') # DUTs to be measured (e.g. Thru connection, 6 dB Attenuator, 10 dB Attenuator, 20 dB Attenuator, 20 dB Attenuator + 10 dB Attenuator  
 
 s = Script(RootPath)
-directory = 'Measurements_01'
+directory = 'Measurements_01' # Measurement directory name
 Directory.CreateDirectory(RootPath + '\\' + directory)
-journalPath = 'Journal_01.vnalog'
+journalPath = 'Journal_01.vnalog' # Measurement journal file name (measurement journal must already exist)
 
 journal = s.LoadJournal(journalPath)
 journal.AddUserCommentJournalItem('Start scripted measurements')
