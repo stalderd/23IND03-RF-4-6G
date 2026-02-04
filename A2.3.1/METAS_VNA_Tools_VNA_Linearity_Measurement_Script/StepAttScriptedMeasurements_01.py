@@ -76,7 +76,7 @@ for frequency in frequencies:
         
         iSwitch.SetState(stepAttStates[i])
         
-        Thread.Sleep()
+        Thread.Sleep(stepAttDelay)
         
         for sourcePower in sourcePowerLevels:
             print 'Source Power: ' + sourcePower.ToString() + ' dBm'
