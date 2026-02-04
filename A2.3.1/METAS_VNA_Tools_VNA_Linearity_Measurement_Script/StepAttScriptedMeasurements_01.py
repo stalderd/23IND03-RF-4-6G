@@ -47,7 +47,6 @@ journalPath = 'Journal_01.vnalog' # Measurement journal file name (measurement j
 
 
 journal = s.LoadJournal(journalPath)
-
 journal.AddUserCommentJournalItem('Start scripted measurements')
 
 iVna = s.OpenVna(vnaDevice)
@@ -62,8 +61,6 @@ for frequency in frequencies:
     
     fdir = directory + '\\' + name + '\\' + frequency.ToString() + 'Hz'
     Directory.CreateDirectory(RootPath + '\\' + fdir)
-    
-
 
     for i in range(0, len(stepAttAttenuation)):
         print 'Attenuation: ' + stepAttAttenuation[i].ToString() + ' dB'
@@ -75,7 +72,6 @@ for frequency in frequencies:
         journal.AddVnaSettingsJournalItem(vnaDevice, iVna)
         
         iSwitch.SetState(stepAttStates[i])
-        
         Thread.Sleep(stepAttDelay)
         
         for sourcePower in sourcePowerLevels:
@@ -91,13 +87,10 @@ for frequency in frequencies:
             Thread.Sleep(vnaSetDelay)
             
             filename = pdir + '\\' + name + '_' + stepAttAttenuation[i].ToString() + 'dB.vdatb'
-            #journal.AddMeasurementJournalItem(vnaDevice, filename, iVna)
             iVna.TriggerSingle()
             data = iVna.GetData(VnaFormat.RawData)
             Binary.SaveVnaData[Number](s.RootPath + '\\' + filename, data)
             journal.AddMeasurementJournalItem(vnaDevice, filename)
-            
-            
 
 iSwitch.SetState(stepAttStates[0])
 
