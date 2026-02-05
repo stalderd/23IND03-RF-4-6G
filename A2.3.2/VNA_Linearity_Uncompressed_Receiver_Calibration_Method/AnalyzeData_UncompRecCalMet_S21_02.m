@@ -45,7 +45,7 @@ nZero_points_b_lower = 10;   % Number of zero points for the b-Receiver for the 
 plotLimdB = 0.01; % +/- min/max for the linearity plots
 
 summaryFreqMinExt_GHz = .05;
-summaryFreqMinNom_Hz = 1;
+summaryFreqMinNom_GHz = 1;
 summaryFreqMaxNom_GHz = 40;
 summaryFreqMaxExt_GHz = 50;
 
@@ -207,7 +207,7 @@ ps2pdf([vnaDevice '_' name '_' method '_' outputfileNameSupplement])
 
 %% Plots Summary
 ii_Ext = (find(freq_GHz == summaryFreqMinExt_GHz):find(freq_GHz == summaryFreqMaxExt_GHz))';
-ii_Nom = (find(freq_GHz == summaryFreqMinNom_Hz):find(freq_GHz == summaryFreqMaxNom_GHz))';
+ii_Nom = (find(freq_GHz == summaryFreqMinNom_GHz):find(freq_GHz == summaryFreqMaxNom_GHz))';
 
 hsum = figure();
 subplot(2,1,1);
@@ -271,7 +271,7 @@ grid on;
 hold off;
 
 a = axes;
-t1 = title({strrep([vnaDevice ', ' name  ' @ ' sprintf('%g', summaryFreqMinNom_Hz) ' GHz to ' sprintf('%g', summaryFreqMaxNom_GHz) ' GHz'], '_', ' '), method, ''});
+t1 = title({strrep([vnaDevice ', ' name  ' @ ' sprintf('%g', summaryFreqMinNom_GHz) ' GHz to ' sprintf('%g', summaryFreqMaxNom_GHz) ' GHz'], '_', ' '), method, ''});
 a.Visible = 'off';
 t1.Visible = 'on';
 
