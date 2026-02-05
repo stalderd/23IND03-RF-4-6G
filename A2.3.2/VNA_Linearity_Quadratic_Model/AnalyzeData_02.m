@@ -17,7 +17,7 @@ nPower = length(power);
 stepAtt = 0:10:60; % Step attenuator values (only used for naming, e.g. 0 dB to 60 dB it 10 dB steps)
 nStepAtt = length(stepAtt);
 nMeas = 100; % Number of sweep points per frequency point (CW sweep mode)
-fitPowerMax = -15; % Highest power level in dBm used for the fit of the quadratic model (e.g. -15 dBm)
+fitPowerMax = -5; % Highest power level in dBm used for the fit of the quadratic model (e.g. -5 dBm), Start with a high value and decrease the value if the fit of the data is not good
 plotLimdB = 0.01; % Scale limit for the plots in dB (e.g. 0.01 dB)
 
 covarianceWeigthing = true; % Covariance weighting of the residuals (e.g. true)
