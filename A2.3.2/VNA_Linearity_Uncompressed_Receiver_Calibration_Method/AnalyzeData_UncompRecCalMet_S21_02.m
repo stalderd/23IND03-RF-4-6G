@@ -9,12 +9,12 @@ LoadVNATools();
 %% Variables
 vnaDevice = 'Agilent_PNA_N5227A_#1';
 directory = 'Measurements_01';
-name = 'StepAtt65dB(f-f)_TH61350416_01';
+name = 'StepAtt60dB(f-f)_SN123456_01';
 
 method = 'UncompresseReceiverCalMethod';
-outputfileNameSupplement = 'S21_02';
+outputfileNameSupplement = 'P1_01';
 
-port1 = true; % true: S21, false = S12
+port1 = true; % true: P1 driving (S21), false = P2 driving (S12)
 if port1
     aypy_Label = 'a1 p1';
     bxpy_Label = 'b2 p1';
@@ -25,21 +25,20 @@ else
     sxy_Label = 'S12';
 end
 
-freq_GHz = [0.050 0.1 0.2 0.5 1 2 5 10 15 20 25 30 35 40 45 50];
+freq_GHz = [0.050 1 10 18 30 40 50]; % VNA frequencies to be analised
 nFreq = length(freq_GHz);
 
-nMeas = 100;
-nMeasStartPosition = 1; % if source is unstable at the begining
+nMeas = 100; % Number of sweep points per frequency point (CW sweep mode)
+nMeasStartPosition = 1; % if source is unstable at the begining the start position can be adjusted to a higher index, where the source is stable
 nMeasUsed = nMeas - nMeasStartPosition + 1;
 
-stepAtt = 0:5:50;
+stepAtt = 0:5:60;
 nStepAtt = length(stepAtt);
-%stepAtt_uncompressed_Index = 5; % Uncompressed test receiver measurement index (below compression influence and above noise floor influence), e.g. 20 dB position
-stepAtt_uncompressed_Index = [5 5 5 6 6 6 6 6 6 6 6 6 6 5 5 4]; % Uncompressed test receiver measurement index (below compression influence and above noise floor influence), e.g. 20 dB position
+stepAtt_uncompressed_Index = [3 3 3 3 3 3 3]; % Uncompressed test receiver measurement index per frequency (below compression influence and above noise floor influence), e.g. 20 dB position
 
-power = -30:1:0;
+power = -30:1:0; % VNA source power levels to be analized (e.g. -30 dBm to 0 dBm in 1 dB steps)
 nPower = length(power);
-nZero_points_a = 10;         % Number of zero points for the a-Receiver (lowest power levels points, below compression influence)
+nZero_points_a = 15;         % Number of zero points for the a-Receiver (lowest power levels points, below compression influence)
 nZero_points_b_higher = 10;  % Number of zero points for the b-Receiver for the stepAtt measurements with higher b-Receiver power levels compared to stepAtt_uncompressed_Index (lowest power level points, below compression influence)
 nZero_points_b_lower = 10;   % Number of zero points for the b-Receiver for the stepAtt measurements with lower b-Receiver power levels compared to stepAtt_uncompressed_Index (highest power level points, above noise floor influence)
 
