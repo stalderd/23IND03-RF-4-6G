@@ -32,7 +32,7 @@ nMeas = 100; % Number of sweep points per frequency point (CW sweep mode)
 nMeasStartPosition = 1; % if source is unstable at the begining the start position can be adjusted to a higher index, where the source is stable
 nMeasUsed = nMeas - nMeasStartPosition + 1;
 
-stepAtt = 0:10:60;
+stepAtt = 0:10:60; % Step attenuator positions to be analized (e.g. 0 dB to 60 dB in 10 dB steps)
 nStepAtt = length(stepAtt);
 stepAtt_uncompressed_Index = [3 3 3 3 3 3 3]; % Uncompressed test receiver measurement index per frequency (below compression influence and above noise floor influence), e.g. 20 dB position
 
