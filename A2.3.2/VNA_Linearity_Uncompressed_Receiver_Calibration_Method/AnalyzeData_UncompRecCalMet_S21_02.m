@@ -3,7 +3,7 @@
 
 clear all
 close all
-addpath('D:\svn_work\217.01 S-Parameter\Software\Metas.Vna\source\Matlab');
+addpath('C:\Users\Public\Documents\Metas.Vna.Tools\Matlab');
 LoadVNATools();
 
 %% Variables
