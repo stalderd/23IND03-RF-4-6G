@@ -9,6 +9,7 @@ LoadVNATools();
 %% Variables
 vnaDevice = 'Agilent_PNA_N5227A_#1';
 name = 'StepAtt60dB(f-f)_SN123456_01';
+outputfileNameSupplement = '_opt_P1_01';
 freq = [50e6 1e9 10e9 18e9 30e9 40e9 50e9]; % VNA frequencies to be measured
 nFreq = length(freq);
 
@@ -86,8 +87,8 @@ end
 xOpt_p1 = LinProp(zeros(nStepAtt + 2, nFreq));
 for i3 = 1:nFreq
     xStart = [p1Slope(:, i3); 0; 0];
-    a_i3 = a1p1m(:, :, i3);
-    b_i3 = b2p1m(:, :, i3);
+    a_i3 = a1p1m(1:fitPowerMaxIndex, :, i3);
+    b_i3 = b2p1m(1:fitPowerMaxIndex, :, i3);
     pFlat = [a_i3(:); b_i3(:)];
     xOpt_p1(:, i3) = optimizer(@objective_function, xStart, pFlat, covarianceWeigthing);
 end
@@ -188,9 +189,9 @@ for i3 = 1:nFreq
     a.Visible = 'off';
     t1.Visible = 'on';
 
-    figure2ps(h1, [vnaDevice '_opt_P1']);
+    figure2ps(h1, [vnaDevice outputfileNameSupplement]);
 end
-ps2pdf([vnaDevice '_opt_P1'])
+ps2pdf([vnaDevice outputfileNameSupplement])
 
 %% Objective function
 % b + x_b * b^2 = x_dut_i * (a + x_a * a^2)
