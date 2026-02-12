@@ -34,12 +34,14 @@ sweepPoints = 100 # Number of sweep points per frequency point (CW sweep mode)
 dwellTime = 0 # VNA dwell time (e.g. 0 s)
 frequencies = [50e6, 1e9, 10e9, 18e9, 30e9, 40e9, 50e9] # VNA frequencies to be measured
 sourcePowerLevels = range(-30, 1, 1) # VNA source power levels to be measured (e.g. -30 dBm to 0 dBm in 1 dB steps)
-vnaSetDelay = 100 # Delay after VNA source power level changes (e.g. 100 ms)
 
 iSwitch = s.OpenSwitch(r'Agilent11713A', r'GPIB0::8::INSTR') # Step attenuator VNA Tools switch driver and visa resource name
 stepAttAttenuation = range(0, 70, 10) # Step attenuator values (only used for naming, e.g. 0 dB to 60 dB it 10 dB steps)
 stepAttStates = ('000','100','010','001','101','011','111') # Step attenuator states to be measured (e.g. 84905M)
-stepAttDelay = 1000 # Delay after step attenuator switching (e.g. 1000 ms)
+
+vnaPowSetDelay = 100 # Delay after VNA source power level changes in ms (e.g. 100 ms)
+vnaFreqSetDelay = 10000 # Delay after VNA frequency changes and after changing the source power from max to min in ms (e.g. 10'000 ms)
+stepAttDelay = 500 # Delay after step attenuator switching in ms (e.g. 500 ms)
 
 directory = 'Measurements_01' # Measurement directory name
 name = 'StepAtt60dB(f-f)_SN123456_01' # Measurement file base name (+ stepAttAttenuation[i].ToString() + 'dB.vdatb')
@@ -62,13 +64,18 @@ for frequency in frequencies:
     fdir = directory + '\\' + name + '\\' + frequency.ToString() + 'Hz'
     Directory.CreateDirectory(RootPath + '\\' + fdir)
 
+    iVna.FrequencyCW = frequency
+    iVna.Source1Power = sourcePowerLevels[0]
+    iVna.Source2Power = sourcePowerLevels[0]
+    iVna.OutputState = True
+    Thread.Sleep(vnaFreqSetDelay)
+    
     for i in range(0, len(stepAttAttenuation)):
         print 'Attenuation: ' + stepAttAttenuation[i].ToString() + ' dB'
         
-        iVna.FrequencyCW = frequency
         iVna.Source1Power = sourcePowerLevels[0]
         iVna.Source2Power = sourcePowerLevels[0]
-        iVna.OutputState = True
+
         journal.AddVnaSettingsJournalItem(vnaDevice, iVna)
         
         iSwitch.SetState(stepAttStates[i])
@@ -84,7 +91,7 @@ for frequency in frequencies:
             iVna.Source2Power = sourcePower
             journal.AddVnaSettingsJournalItem(vnaDevice, iVna)
             
-            Thread.Sleep(vnaSetDelay)
+            Thread.Sleep(vnaPowSetDelay)
             
             filename = pdir + '\\' + name + '_' + stepAttAttenuation[i].ToString() + 'dB.vdatb'
             iVna.TriggerSingle()
