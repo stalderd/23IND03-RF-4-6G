@@ -13,7 +13,7 @@ outputfileNameSupplement = '_opt_P1_01';
 freq = [50e6 1e9 10e9 18e9 30e9 40e9 50e9]; % VNA frequencies to be measured
 nFreq = length(freq);
 
-power = -30:1:0; % VNA source power levels to be measured (e.g. -30 dBm to 0 dBm in 1 dB steps)
+power = -30:1:-5; % VNA source power levels to be measured (e.g. -30 dBm to -5 dBm in 1 dB steps)
 nPower = length(power);
 stepAtt = 0:10:60; % Step attenuator values (only used for naming, e.g. 0 dB to 60 dB it 10 dB steps)
 nStepAtt = length(stepAtt);
