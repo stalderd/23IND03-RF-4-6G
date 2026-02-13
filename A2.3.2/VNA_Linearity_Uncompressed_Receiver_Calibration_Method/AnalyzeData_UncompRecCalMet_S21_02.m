@@ -36,7 +36,7 @@ stepAtt = 0:10:60; % Step attenuator positions to be analized (e.g. 0 dB to 60 d
 nStepAtt = length(stepAtt);
 stepAtt_uncompressed_Index = [2 3 3 3 3 3 3]; % Uncompressed test receiver measurement index per frequency (below compression influence and above noise floor influence), e.g. 20 dB position
 
-power = -30:1:0; % VNA source power levels to be analized (e.g. -30 dBm to 0 dBm in 1 dB steps)
+power = -30:1:-5; % VNA source power levels to be analized (e.g. -30 dBm to -5 dBm in 1 dB steps)
 nPower = length(power);
 nZero_points_a = 15;         % Number of zero points for the a-Receiver (lowest power levels points, below compression influence)
 nZero_points_b_higher = 10;  % Number of zero points for the b-Receiver for the stepAtt measurements with higher b-Receiver power levels compared to stepAtt_uncompressed_Index (lowest power level points, below compression influence)
