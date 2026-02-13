@@ -1,5 +1,6 @@
 # Peter Huerlimann METAS - 22.03.2019
 # Michael Wollensack METAS - 11.03.2022
+# Daniel Stalder METAS - 2026
 
 # METAS VNA Tools project must already exist with Jounal before this script can be started.
 # IFBW must already be set correctly (e.g. 10 Hz).
@@ -40,7 +41,7 @@ stepAttAttenuation = range(0, 70, 10) # Step attenuator values (only used for na
 stepAttStates = ('000','100','010','001','101','011','111') # Step attenuator states to be measured (e.g. 84905M)
 
 vnaPowSetDelay = 100 # Delay after VNA source power level changes in ms (e.g. 100 ms)
-vnaFreqSetDelay = 10000 # Delay after VNA frequency changes and after changing the source power from max to min in ms (e.g. 10'000 ms)
+vnaFreqSetDelay = 300000 # Delay after VNA frequency changes and after changing the source power from max to min in ms (e.g. 300'000 ms = 5 min) -> can be important for the receiver stability to wait long enough
 stepAttDelay = 500 # Delay after step attenuator switching in ms (e.g. 500 ms)
 
 directory = 'Measurements_01' # Measurement directory name
@@ -99,6 +100,8 @@ for frequency in frequencies:
             Binary.SaveVnaData[Number](s.RootPath + '\\' + filename, data)
             journal.AddMeasurementJournalItem(vnaDevice, filename)
 
+iVna.Source1Power = sourcePowerLevels[0]
+iVna.Source2Power = sourcePowerLevels[0]
 iSwitch.SetState(stepAttStates[0])
 
 iSwitch.Close()
