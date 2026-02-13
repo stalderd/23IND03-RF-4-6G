@@ -34,7 +34,7 @@ vnaDevice = 'Agilent_PNA_N5227A_#1' # Database file name of the VNA used in VNA 
 sweepPoints = 100 # Number of sweep points per frequency point (CW sweep mode)
 dwellTime = 0 # VNA dwell time (e.g. 0 s)
 frequencies = [50e6, 1e9, 10e9, 18e9, 30e9, 40e9, 50e9] # VNA frequencies to be measured
-sourcePowerLevels = range(-30, 1, 1) # VNA source power levels to be measured (e.g. -30 dBm to 0 dBm in 1 dB steps)
+sourcePowerLevels = range(-30, -4, 1) # VNA source power levels to be measured (e.g. -30 dBm to -5 dBm in 1 dB steps)
 
 iSwitch = s.OpenSwitch(r'Agilent11713A', r'GPIB0::8::INSTR') # Step attenuator VNA Tools switch driver and visa resource name
 stepAttAttenuation = range(0, 70, 10) # Step attenuator values (only used for naming, e.g. 0 dB to 60 dB it 10 dB steps)
