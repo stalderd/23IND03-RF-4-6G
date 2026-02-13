@@ -53,7 +53,7 @@ journal = s.LoadJournal(journalPath)
 journal.AddUserCommentJournalItem('Start scripted measurements')
 
 iVna = s.OpenVna(vnaDevice)
-mode = VnaParameter.SParameterMatrixReferenceReceiverAndSwitchTerms(Array[int]([1, 2]))
+mode = VnaParameter.SParameterMatrixReferenceReceiver(Array[int]([1, 2]))
 iVna.ParameterMatrix = mode
 iVna.SweepMode = VnaSweepMode.CWTime
 iVna.SweepPoints = sweepPoints
