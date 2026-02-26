@@ -47,6 +47,11 @@ measurements = [
     ['09_60dB_-8dBm_AVG100','111', -8, 100],
     ['10_0dB_-15dBm_AVG1', '000', -15, 1]
 ]
+# The power level is changed from -15 dBm to -8 dBm at 30 dB state. This is to reduce the noise for attenuation states higher than -30 dB.
+# 30 dB is measured at both power levels in order to be able to check the consistency.
+# The averaging is increased for the 50 dB state to 10 and for the 60 dB state to 100 to reduce the noise for this high attenuation states.
+# The 0 dB state is measured at the beginning in the middle (before the power level change) and at the end of the measurement sequence,
+# in order to check the consistency of the measurements and identify any drifts that occur during the sequence.
 
 stepAttDelay = 1000 # Delay after step attenuator switching (e.g. 1000 ms)
 
