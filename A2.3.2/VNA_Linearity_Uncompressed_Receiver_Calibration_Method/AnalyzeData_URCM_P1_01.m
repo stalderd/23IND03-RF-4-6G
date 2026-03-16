@@ -11,7 +11,7 @@ vnaDevice = 'Agilent_PNA_N5227A_#1';
 directory = 'Measurements_01';
 name = 'StepAtt60dB(f-f)_SN123456_01';
 
-method = 'UncompresseReceiverCalMethod';
+method = 'URCM'; % Uncompresse Receiver Calibration Method
 outputfileNameSupplement = 'P1_01';
 
 port1 = true; % true: P1 driving (S21), false = P2 driving (S12)
@@ -201,9 +201,9 @@ for i3 = 1:nFreq
     a.Visible = 'off';
     t1.Visible = 'on';
 
-    figure2ps(h1, [vnaDevice '_' name '_' method '_' outputfileNameSupplement]);
+    figure2ps(h1, [vnaDevice '_' method '_' outputfileNameSupplement]);
 end
-ps2pdf([vnaDevice '_' name '_' method '_' outputfileNameSupplement])
+ps2pdf([vnaDevice '_' method '_' outputfileNameSupplement])
 
 %% Plots Summary
 ii_Ext = (find(freq_GHz == summaryFreqMinExt_GHz):find(freq_GHz == summaryFreqMaxExt_GHz))';
@@ -241,7 +241,7 @@ t1 = title({strrep([vnaDevice ', ' name  ' @ ' sprintf('%g', summaryFreqMinExt_G
 a.Visible = 'off';
 t1.Visible = 'on';
 
-figure2ps(hsum, [vnaDevice '_' name '_' method 'Summary_' outputfileNameSupplement]);
+figure2ps(hsum, [vnaDevice '_' method 'Summary_' outputfileNameSupplement]);
 
 hsum = figure();
 subplot(2,1,1);
@@ -275,8 +275,8 @@ t1 = title({strrep([vnaDevice ', ' name  ' @ ' sprintf('%g', summaryFreqMinNom_G
 a.Visible = 'off';
 t1.Visible = 'on';
 
-figure2ps(hsum, [vnaDevice '_' name '_' method 'Summary_' outputfileNameSupplement]);
-ps2pdf([vnaDevice '_' name '_' method 'Summary_' outputfileNameSupplement])
+figure2ps(hsum, [vnaDevice '_' method 'Summary_' outputfileNameSupplement]);
+ps2pdf([vnaDevice '_' method 'Summary_' outputfileNameSupplement])
 
 %% Plot Subfunctions
 function plotv(x, y) 
