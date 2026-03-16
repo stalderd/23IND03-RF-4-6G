@@ -12,9 +12,9 @@ directory = 'Measurements_01';
 name = 'StepAtt60dB(f-f)_SN123456_01';
 
 method = 'URCM'; % Uncompresse Receiver Calibration Method
-outputfileNameSupplement = 'P1_01';
+outputfileNameSupplement = 'P1_01'; % P1 -> port 1 is driving, change to P2 if P2 is driving
 
-port1 = true; % true: P1 driving (S21), false = P2 driving (S12)
+port1 = true; % true: P1 driving (a1_p1 and b2_p1), false = P2 driving (a2_p2 and b1_p2)
 if port1
     aypy_Label = 'a1 p1';
     bxpy_Label = 'b2 p1';
