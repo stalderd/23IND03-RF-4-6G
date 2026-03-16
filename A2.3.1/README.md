@@ -5,7 +5,7 @@ VSL, CMI, LNE, METAS, TUBITAK and PTB will apply novel methods to characterise t
 ## METAS VNA Tools VNA Linearity Measurement Script
 
 - The script called [StepAttScriptedMeasurements_01.py](METAS_VNA_Tools_VNA_Linearity_Measurement_Script/StepAttScriptedMeasurements_01.py) takes the raw measurements.
-- The script called [E5061B StepAttScriptedMeasurements_01.py](METAS_VNA_Tools_VNA_Linearity_Measurement_Script/StepAttScriptedMeasurements_01.py) takes the raw measurements for a E5061B.
+- The script called [E5061B_StepAttScriptedMeasurements_01.py](METAS_VNA_Tools_VNA_Linearity_Measurement_Script/E5061B_StepAttScriptedMeasurements_01.py) takes the raw measurements for a E5061B.
 
 ## METAS VNA Tools Extender Linearity Measurement Script
 
