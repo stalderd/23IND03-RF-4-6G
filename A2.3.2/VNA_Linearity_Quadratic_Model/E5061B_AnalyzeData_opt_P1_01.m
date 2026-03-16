@@ -28,10 +28,8 @@ a1p1 = zeros(nPower, nStepAtt, nFreq, nMeas); % sqrt(mW)
 b2p1 = zeros(nPower, nStepAtt, nFreq, nMeas); % sqrt(mW)
 a2p2 = zeros(nPower, nStepAtt, nFreq, nMeas); % sqrt(mW)
 b1p2 = zeros(nPower, nStepAtt, nFreq, nMeas); % sqrt(mW)
-s11 = zeros(nPower, nStepAtt, nFreq, nMeas);
 s21 = zeros(nPower, nStepAtt, nFreq, nMeas);
 s12 = zeros(nPower, nStepAtt, nFreq, nMeas);
-s22 = zeros(nPower, nStepAtt, nFreq, nMeas);
 
 for i1 = 1:nPower
     for i2 = 1:nStepAtt

@@ -28,10 +28,8 @@ a1p1 = zeros(nPower, nStepAtt, nFreq, nMeas); % sqrt(mW)
 b2p1 = zeros(nPower, nStepAtt, nFreq, nMeas); % sqrt(mW)
 a2p2 = zeros(nPower, nStepAtt, nFreq, nMeas); % sqrt(mW)
 b1p2 = zeros(nPower, nStepAtt, nFreq, nMeas); % sqrt(mW)
-s11 = zeros(nPower, nStepAtt, nFreq, nMeas);
 s21 = zeros(nPower, nStepAtt, nFreq, nMeas);
 s12 = zeros(nPower, nStepAtt, nFreq, nMeas);
-s22 = zeros(nPower, nStepAtt, nFreq, nMeas);
 
 for i1 = 1:nPower
     for i2 = 1:nStepAtt
@@ -42,10 +40,8 @@ for i1 = 1:nPower
             b2p1(i1, i2, i3, :) = d.Data(:, 3).*d.Data(:, 5);
             a2p2(i1, i2, i3, :) = d.Data(:, 6);
             b1p2(i1, i2, i3, :) = d.Data(:, 2).*d.Data(:, 6);
-            s11(i1, i2, i3, :) = d.Data(:, 1);
             s21(i1, i2, i3, :) = d.Data(:, 3);
             s12(i1, i2, i3, :) = d.Data(:, 2);
-            s22(i1, i2, i3, :) = d.Data(:, 4);
         end
     end
 end
