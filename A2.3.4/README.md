@@ -7,4 +7,4 @@ VSL, CMI, INRIM, LNE, METAS, PTB, TUBITAK and NPL will select a set of stable at
 
 The script called [StepAtt60dB(f-m)_TH61350341_01.py](METAS_VNA_Tools_Step_Attenuator_Measurement_Script/StepAtt60dB(f-m)_TH61350341_01.py) takes the raw measurements.
 
-The script called is for the low frequency VNA E5061B [E5061B StepAtt60dB(f-m)_TH61350341_01.py](METAS_VNA_Tools_Step_Attenuator_Measurement_Script/StepAtt60dB(f-m)_TH61350341_01.py)  and takes the raw measurements.
+The script called is for the low frequency VNA E5061B [E5061B_StepAtt60dB(f-m)_TH61350341_01.py](METAS_VNA_Tools_Step_Attenuator_Measurement_Script/E5061B_StepAtt60dB(f-m)_TH61350341_01.py)  and takes the raw measurements.
