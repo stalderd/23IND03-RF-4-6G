@@ -16,8 +16,12 @@ The purpose of the above script using simulated test data is to test if the unco
 
 ## VNA Linearity Quadratic Model
 
-The MATLAB script called [AnalyzeData_02.m](VNA_Linearity_Quadratic_Model/AnalyzeData_02.m) analyze the measured data sets and generates a report.
+- The MATLAB script called [AnalyzeData_opt_P1_01.m](VNA_Linearity_Quadratic_Model/AnalyzeData_opt_P1_01.m) analyzes the measured data sets for a1_p1 and b2_p1 and generates a report.
+- The MATLAB script called [AnalyzeData_opt_P2_01.m](VNA_Linearity_Quadratic_Model/AnalyzeData_opt_P2_01.m) analyzes the measured data sets for a2_p2 and b1_p2 and generates a report.
+- The MATLAB script called [E5061B AnalyzeData_opt_P1_01.m](VNA_Linearity_Quadratic_Model/E5061B AnalyzeData_opt_P1_01.m) analyzes the measured data sets for a1_p1 and b2_p1 and generates a report for a E5061B.
+- The MATLAB script called [E5061B AnalyzeData_opt_P2_01.m](VNA_Linearity_Quadratic_Model/[E5061B AnalyzeData_opt_P2_01.m) analyzes the measured data sets for a2_p2 and b1_p2 and generates a report for a E5061B.
 
 ## VNA Linearity Uncompressed Receiver Calibration Method
 
-The MATLAB script called [AnalyzeData_UncompRecCalMet_S21_02.m](VNA_Linearity_Uncompressed_Receiver_Calibration_Method/AnalyzeData_UncompRecCalMet_S21_02.m) analyzes the measured data sets and generates a report.
+- The MATLAB script called [AnalyzeData_URCM_P1_01.m](VNA_Linearity_Uncompressed_Receiver_Calibration_Method/AnalyzeData_URCM_P1_01.m) analyzes the measured data sets and generates a report.
+- The MATLAB script called [E5061B AnalyzeData_URCM_P1_01.m](VNA_Linearity_Uncompressed_Receiver_Calibration_Method/E5061B AnalyzeData_URCM_P1_01.m) analyzes the measured data sets and generates a report for a E5061B.
