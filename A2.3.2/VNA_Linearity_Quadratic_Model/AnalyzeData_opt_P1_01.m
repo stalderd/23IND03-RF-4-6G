@@ -10,12 +10,12 @@ LoadVNATools();
 vnaDevice = 'Agilent_PNA_N5227A_#1';
 name = 'StepAtt60dB(f-f)_SN123456_01';
 outputfileNameSupplement = '_opt_P1_01';
-freq = [50e6 1e9 10e9 18e9 30e9 40e9 50e9]; % VNA frequencies to be measured
+freq = [50e6 1e9 10e9 18e9 30e9 40e9 50e9]; % VNA frequencies to be analyzed (e.g. 50 MHz, 1 GHz, 10 GHz, 18 GHz, 30 GHz, 40 GHz, 50 GHz)
 nFreq = length(freq);
 
-power = -30:1:-5; % VNA source power levels to be measured (e.g. -30 dBm to -5 dBm in 1 dB steps)
+power = -30:1:-5; % VNA source power levels to be analyzed (e.g. -30 dBm to -5 dBm in 1 dB steps)
 nPower = length(power);
-stepAtt = 0:10:60; % Step attenuator values (only used for naming, e.g. 0 dB to 60 dB it 10 dB steps)
+stepAtt = 0:10:60; % Step attenuator values to be analyzed (only used for naming, e.g. 0 dB to 60 dB it 10 dB steps)
 nStepAtt = length(stepAtt);
 nMeas = 100; % Number of sweep points per frequency point (CW sweep mode)
 fitPowerMax = -5; % Highest power level in dBm used for the fit of the quadratic model (e.g. -5 dBm), Start with a high value and decrease the value if the fit of the data is not good

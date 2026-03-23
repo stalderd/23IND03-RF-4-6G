@@ -25,18 +25,18 @@ else
     sxy_Label = 'S12';
 end
 
-freq_GHz = [10e3 100e3 1e6 10e6 50e6 100e6 1e9 2e9 3e9]./1e9; % VNA frequencies to be analised
+freq_GHz = [10e3 100e3 1e6 10e6 50e6 100e6 1e9 2e9 3e9]./1e9; % VNA frequencies to be analyzed in GHz (e.g. 0.050 GHz, 1 GHz, 10 GHz, 18 GHz, 30 GHz, 40 GHz, 50 GHz)
 nFreq = length(freq_GHz);
 
 nMeas = 100; % Number of sweep points per frequency point (CW sweep mode)
 nMeasStartPosition = 1; % if source is unstable at the begining the start position can be adjusted to a higher index, where the source is stable
 nMeasUsed = nMeas - nMeasStartPosition + 1;
 
-stepAtt = 0:10:60; % Step attenuator positions to be analized (e.g. 0 dB to 60 dB in 10 dB steps)
+stepAtt = 0:10:60; % Step attenuator positions to be analyzed (e.g. 0 dB to 60 dB in 10 dB steps)
 nStepAtt = length(stepAtt);
 stepAtt_uncompressed_Index = [3 3 3 3 3 3 3 3 3]; % Uncompressed test receiver measurement index per frequency (below compression influence and above noise floor influence), e.g. 20 dB position
 
-power = -25:1:-5; % VNA source power levels to be analized (e.g. -30 dBm to -5 dBm in 1 dB steps)
+power = -25:1:-5; % VNA source power levels to be analyzed (e.g. -30 dBm to -5 dBm in 1 dB steps)
 nPower = length(power);
 nZero_points_a = 10;         % Number of zero points for the a-Receiver (lowest power levels points, below compression influence)
 nZero_points_b_higher = 5;  % Number of zero points for the b-Receiver for the stepAtt measurements with higher b-Receiver power levels compared to stepAtt_uncompressed_Index (lowest power level points, below compression influence)
