@@ -34,7 +34,6 @@ nMeas = 40; % Number of sweep points per frequency point (CW sweep mode)
 nMeasStartPosition = 2; % if source is unstable at the begining the start position can be adjusted to a higher index, where the source is stable
 nMeasUsed = nMeas - nMeasStartPosition + 1;
 
-% DUT = {'Thru_01','6dB_236275','10dB_0006','20dB_236276','20dB_236276_10dB_0006', 'Thru_02'};
 DUT = {'Thru_01','6dB_236275','20dB_236276','10dB_0006_20dB_236276'}; % sort with increasing attenuation
 nDUT = length(DUT);
 
