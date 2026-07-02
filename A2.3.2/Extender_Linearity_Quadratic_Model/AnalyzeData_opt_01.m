@@ -11,7 +11,7 @@ LoadVNATools();
 vnaDevice = 'Keysight_PNA_N5227B_#2_VDI_WR10_2';
 directory = 'Measurements_01';
 
-method = 'opt'; % Uncompresse Receiver Calibration Method
+method = 'opt'; % Quadratic Model (Optimaization)
 outputfileNameSupplement = 'P1_8dB'; % P1 -> port 1 is driving, change to P2 if P2 is driving
 
 port1 = true; % true: P1 driving (a1_p1 and b2_p1), false = P2 driving (a2_p2 and b1_p2)
