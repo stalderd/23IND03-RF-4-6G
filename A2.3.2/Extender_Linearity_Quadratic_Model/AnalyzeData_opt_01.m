@@ -40,7 +40,7 @@ nDUT = length(DUT);
 sourceAttenuator_dB = [0, 0.5, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30]; % low to high
 nPower = length(sourceAttenuator_dB);
 
-fitSourceAttenuatorMin = 8; % 
+fitSourceAttenuatorMin = 8; % Lowest source attenuator position in dB used for the fit of the quadratic model (e.g. 8 dB), Start with a low value and increase the value if the fit of the data is not good
 fitSourceAttMinIndex = find(sourceAttenuator_dB == fitSourceAttenuatorMin);
 
 plotLimdB = 0.01; % +/- min/max for the linearity plots
